@@ -1,0 +1,44 @@
+1. Authenticate and authorize
+
+To control access to API resources, you must carefully and comprehensively identify all related users and devices. This typically requires client-side
+applications to include a token in the API call so that the service can validate the client.
+Use standards such as OAuth 2.0, OpenID Connect and JSON web tokens to authenticate API traffic and to define access control rules or grant types 
+that determine which users, groups and roles can access specific API resources.
+Always follow POLP. If a user just needs to read a blog or post a comment, those are the only permissions that should be assigned.
+
+2. Implement access control
+
+Organizations that want to enable third parties to access internal data and systems through APIs must introduce and test controls to manage that 
+access: who, what and when, as well as checks on data access, creation, update and deletion -- the zero-trust security model.
+Keep APIs behind a firewall, web application firewall or API gateway -- accessed through a secure protocol, such as HTTPS -- to provide baseline 
+protection, such as scanning for signature-based threats and injection-based attacks.
+
+3. Encrypt requests and responses
+
+All network traffic should be encrypted -- particularly API requests and responses, as they'll likely contain sensitive credentials and data. All 
+APIs should use and require HTTPS. Enabling HTTP Strict Transport Security where possible is better than redirecting HTTP traffic to HTTPS, as API 
+clients may not behave as expected.
+
+4. Validate the data
+
+Never assume API data has been cleansed or validated correctly. Implement your own data cleaning and validation routines server side to prevent 
+standard injection flaws and cross-site request forgery attacks. Debugging tools such as Postman and Chrome DevTools can help examine the API's 
+data flow and track errors and anomalies.
+
+
+5. Share only necessary information
+API responses often include an entire data record rather than just the relevant fields, relying on the client application to filter what a user 
+sees. This is lazy programming, and it not only slows response times but also provides attackers with additional information about the API and the 
+resources it accesses.
+Responses should contain the minimum information necessary to fulfill a request. For example, if an employee's age is requested, the date of birth 
+shouldn't be returned as well.
+
+6. Record APIs in an API registry
+Nobody can secure what they don't know. It's therefore essential to record all APIs in a registry to define characteristics such as its name, 
+purpose, payload, usage, access, live date, retired date and owner. This will avoid shadow or silo APIs that have been forgotten, never documented 
+or developed outside of a main project, possibly through mergers, acquisitions, or test or deprecated versions.
+Good documentation is particularly important for third-party developers who wish to incorporate those APIs into their own projects. The API registry should include links to the document or manual that contains all technical API requirements, including functions, classes, return types, arguments and integration processes.
+
+7. Conduct regular security tests
+In addition to thoroughly testing APIs during development, security teams need to regularly check the security controls protecting live APIs to 
+ensure they're functioning as expected and behaving as documented.
